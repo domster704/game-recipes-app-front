@@ -30,9 +30,7 @@ export class App extends React.Component {
 
         this.assistant.on("data", (event/*: any*/) => {
             if (event.type === "character") {
-                // console.log(`assistant.on(data): character: "${event?.character?.id}"`);
             } else if (event.type === "insets") {
-                // console.log(`assistant.on(data): insets`);
             } else {
                 const {action} = event;
                 console.log('xd', action, event)
@@ -42,30 +40,24 @@ export class App extends React.Component {
 
         this.assistant.on("start", (event) => {
             let initialData = this.assistant.getInitialData();
-            // console.log(`assistant.on(start)`, event, initialData);
         });
 
         this.assistant.on("command", (event) => {
-            // console.log(`assistant.on(command)`, event);
         });
 
         this.assistant.on("error", (event) => {
-            // console.log(`assistant.on(error)`, event);
         });
 
         this.assistant.on("tts", (event) => {
-            // console.log(`assistant.on(tts)`, event);
         });
 
     }
 
     componentDidMount() {
-        console.log('componentDidMount');
     }
 
     getStateForAssistant() {
-        // console.log('getStateForAssistant: this.state:', this.state)
-        const state = {
+        return {
             item_selector: {
                 items: this.state.cards.map(
                     ({id, question, answer}, index) => ({
@@ -77,12 +69,9 @@ export class App extends React.Component {
                 ),
             },
         };
-        // console.log('getStateForAssistant: state:', state)
-        return state;
     }
 
     dispatchAssistantAction(action) {
-        // console.log('dispatchAssistantAction', action);
         console.log(action)
         if (action) {
             switch (action.type) {
@@ -101,8 +90,8 @@ export class App extends React.Component {
 
     new_card(action) {
         console.log('new_card', action);
-        console.log(this.state.notes)
-        let notes = this.state.notes?.length > 0 ? this.state.notes : [];
+        console.log(this.state.cards)
+        let notes = this.state.cards?.length > 0 ? this.state.cards : [];
         this.setState({
             cards: [
                 ...notes,
@@ -118,7 +107,7 @@ export class App extends React.Component {
     done_note(action) {
         console.log('done_note', action);
         this.setState({
-            notes: this.state.notes.map((note) =>
+            notes: this.state.cards.map((note) =>
                 (note.id === action.id)
                     ? {...note, completed: !note.completed}
                     : note
@@ -145,7 +134,7 @@ export class App extends React.Component {
     }
 
     play_done_note(id) {
-        const completed = this.state.notes.find(({id}) => id)?.completed;
+        const completed = this.state.cards.find(({id}) => id)?.completed;
         if (!completed) {
             const texts = ['Молодец!', 'Красавчик!', 'Супер!'];
             const idx = Math.random() * texts.length | 0;
@@ -154,20 +143,16 @@ export class App extends React.Component {
     }
 
     delete_note(action) {
-        console.log('delete_note', action);
         this.setState({
-            notes: this.state.notes.filter(({id}) => id !== action.id),
+            notes: this.state.cards.filter(({id}) => id !== action.id),
         })
     }
 
     render() {
-        // console.log('render');
         return (
             <CardsList
-                items={this.state.notes}
+                items={this.state.cards}
                 onAdd={(note) => {
-                    // this.add_note();
-                    // dispatch({type: "add_note", note})
                     this.new_card({type: "add_note", note});
                 }}
                 onDone={(note) => {
