@@ -14,7 +14,7 @@ export class AddCard extends React.Component {
         const {onAdd} = this.props;
 
         return (
-            <form onSubmit={(event) => {
+            <form className="form_add_recipe" onSubmit={(event) => {
                 event.preventDefault();
                 onAdd(this.state.note);
                 this.setState({
@@ -24,14 +24,16 @@ export class AddCard extends React.Component {
                 <input
                     className="add-task"
                     type="text"
-                    placeholder="Add Note"
+                    placeholder="Поиск..."
                     value={this.state.note}
                     onChange={({target: {value}}) => this.setState({
                         note: value,
                     })}
-                    required
                     autoFocus
                 />
+                <p>Описание проекта и сервиса, либо просто описание тупое, потом текст наклепаю, либо мб еще добавить
+                    прогерскую инфу.
+                    Ниже отображается список ласт добавленных</p>
             </form>
         )
     }

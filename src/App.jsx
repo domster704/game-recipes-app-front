@@ -2,14 +2,17 @@ import React from "react";
 import {createAssistant, createSmartappDebugger,} from "@salutejs/client";
 
 import "./App.css";
+import "./voiceSber.css";
 import {CardsList} from './pages/CardsList';
+import {addRecipe, removeRecipe} from "./store/recipeSlice";
+import {connect} from "react-redux";
 
 
 const initializeAssistant = (getState/*: any*/) => {
     if (process.env.NODE_ENV === "development") {
         return createSmartappDebugger({
             token: process.env.REACT_APP_TOKEN ?? "",
-            initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
+            // initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
             getState,
         });
     }
@@ -17,10 +20,9 @@ const initializeAssistant = (getState/*: any*/) => {
 };
 
 
-export class App extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
-        console.log('constructor');
 
         this.state = {
             cards: [],
@@ -30,10 +32,11 @@ export class App extends React.Component {
 
         this.assistant.on("data", (event/*: any*/) => {
             if (event.type === "character") {
+
             } else if (event.type === "insets") {
+
             } else {
                 const {action} = event;
-                console.log('xd', action, event)
                 this.dispatchAssistantAction(action);
             }
         });
@@ -50,7 +53,6 @@ export class App extends React.Component {
 
         this.assistant.on("tts", (event) => {
         });
-
     }
 
     componentDidMount() {
@@ -59,7 +61,7 @@ export class App extends React.Component {
     getStateForAssistant() {
         return {
             item_selector: {
-                items: this.state.cards.map(
+                items: this.props.recipes.map(
                     ({id, question, answer}, index) => ({
                         number: index + 1,
                         id,
@@ -72,47 +74,33 @@ export class App extends React.Component {
     }
 
     dispatchAssistantAction(action) {
-        console.log(action)
-        if (action) {
-            switch (action.type) {
-                case 'add_note':
-                case 'new_card':
-                    return this.new_card(action);
-                case 'wrong_answer':
-                    return this.wrong_answer(action);
-                case 'right_answer':
-                    return this.right_answer(action);
-                default:
-                    throw new Error();
-            }
+        if (!action) {
+            return
+        }
+
+        switch (action.type) {
+            case 'add_note':
+                return this.new_card(action);
+            case 'done_note':
+                return this.done_note(action);
+            default:
+                throw new Error();
         }
     }
 
     new_card(action) {
-        console.log('new_card', action);
-        console.log(this.state.cards)
-        let notes = this.state.cards?.length > 0 ? this.state.cards : [];
-        this.setState({
-            cards: [
-                ...notes,
-                {
-                    id: Math.random().toString(36).substring(7),
-                    title: action.note,
-                    completed: false,
-                },
-            ],
-        })
+        this.props.addRecipe({
+            id: Math.random().toString(36).substring(7),
+            title: action.note,
+            completed: false,
+            description: '',
+            ingredients: '',
+            tags: []
+        });
     }
 
     done_note(action) {
-        console.log('done_note', action);
-        this.setState({
-            notes: this.state.cards.map((note) =>
-                (note.id === action.id)
-                    ? {...note, completed: !note.completed}
-                    : note
-            ),
-        })
+        this.props.removeRecipe(action.id);
     }
 
     _send_action_value(action_id, value) {
@@ -128,13 +116,12 @@ export class App extends React.Component {
             data,
             (data) => {   // функция, вызываемая, если на sendData() был отправлен ответ
                 const {type, payload} = data;
-                console.log('sendData onData:', type, payload);
                 unsubscribe();
             });
     }
 
     play_done_note(id) {
-        const completed = this.state.cards.find(({id}) => id)?.completed;
+        const completed = this.props.recipes.find(({id}) => id)?.completed;
         if (!completed) {
             const texts = ['Молодец!', 'Красавчик!', 'Супер!'];
             const idx = Math.random() * texts.length | 0;
@@ -143,15 +130,14 @@ export class App extends React.Component {
     }
 
     delete_note(action) {
-        this.setState({
-            notes: this.state.cards.filter(({id}) => id !== action.id),
-        })
+        this.props.removeRecipe(action.id);
     }
 
     render() {
         return (
+            // <div className=""></div>
             <CardsList
-                items={this.state.cards}
+                items={Object.keys(this.props.recipes).map(key => this.props.recipes[key])}
                 onAdd={(note) => {
                     this.new_card({type: "add_note", note});
                 }}
@@ -164,3 +150,17 @@ export class App extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        recipes: state.recipes,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addRecipe: (action) => dispatch(addRecipe(action)),
+        removeRecipe: (action) => dispatch(removeRecipe(action))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

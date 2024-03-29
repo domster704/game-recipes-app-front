@@ -57,6 +57,7 @@ module.exports = {
         client: {
             progress: false,
         },
-        open: true,
+        open: false,
+        liveReload: false,
     }
 }

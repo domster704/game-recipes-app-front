@@ -1,0 +1,26 @@
+div .NativePanel {
+    position: absolute;
+    display: block;
+    background: unset;
+    padding: 48px 24px 24px 24px;
+    top: 0;
+    bottom: unset;
+    width: unset;
+    height: unset;
+    backdrop-filter: unset;
+}
+
+div .Bubble {
+    display: none;
+}
+
+div .NativePanel__textInputs {
+    margin-left: 0;
+    margin-top: 16px;
+}
+
+div .NativePanel__textInputs .TextInput {
+    font-size: 1.1em;
+    color: black;
+}
+

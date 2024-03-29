@@ -8,7 +8,7 @@ export const CardItemList = (props) => {
     const {items, onDone} = props
 
     return (
-        <ul className="notes">
+        <div  className="notes">
             {
                 items?.map((item, index) => (
                     <CardItem
@@ -19,7 +19,10 @@ export const CardItemList = (props) => {
                     />
                 ))
             }
-        </ul>
+        </div>
+        // <ul className="notes">
+        //
+        // </ul>
     )
 }
 
