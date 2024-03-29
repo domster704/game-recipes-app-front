@@ -1,8 +1,10 @@
 {
-  "name": "salute-demo-app",
+  "name": "cooking-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
     "@salutejs/client": "^1.18.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -11,15 +13,24 @@
     "@types/node": "^20.2.4",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "dotenv": "^16.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "style-loader": "^3.3.4",
     "styled-components": "^5.3.10",
     "typescript": "=5.0.4",
-    "web-vitals": "^3.3.1"
+    "web-vitals": "^3.3.1",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "webpack-dev-server": "webpack-dev-server",
+    "webpack-build": "webpack --mode production",
+    "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
