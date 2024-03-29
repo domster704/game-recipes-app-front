@@ -5,7 +5,7 @@ div .NativePanel {
     padding: 48px 24px 24px 24px;
     top: 0;
     bottom: unset;
-    width: unset;
+    width: 100%;
     height: unset;
     backdrop-filter: unset;
 }
@@ -19,8 +19,22 @@ div .NativePanel__textInputs {
     margin-top: 16px;
 }
 
-div .NativePanel__textInputs .TextInput {
+div .NativePanel__textInputs :is(.TextInput, .SuggestsSuggest) {
     font-size: 1.1em;
+    color: black;
+    width: 100%;
+}
+
+div .NativePanel__textInputs .Suggests {
+    top: unset !important;
+}
+
+div .NativePanel__textInputs .SuggestsSuggest {
+    padding-left: 0;
+    margin-top: 4px;
+}
+
+div .NativePanel__textInputs .Suggests * {
     color: black;
 }
 

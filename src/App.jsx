@@ -12,7 +12,7 @@ const initializeAssistant = (getState/*: any*/) => {
     if (process.env.NODE_ENV === "development") {
         return createSmartappDebugger({
             token: process.env.REACT_APP_TOKEN ?? "",
-            // initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
+            initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
             getState,
         });
     }
@@ -61,19 +61,15 @@ class App extends React.Component {
     getStateForAssistant() {
         return {
             item_selector: {
-                items: this.props.recipes.map(
-                    ({id, question, answer}, index) => ({
-                        number: index + 1,
-                        id,
-                        question,
-                        answer
-                    })
-                ),
+                items: Object.keys(this.props.recipes).map((key) => {
+                    return this.props.recipes[key]
+                })
             },
         };
     }
 
     dispatchAssistantAction(action) {
+        console.log(action)
         if (!action) {
             return
         }

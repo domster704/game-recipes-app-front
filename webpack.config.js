@@ -59,5 +59,6 @@ module.exports = {
         },
         open: false,
         liveReload: false,
+        host: 'localhost',
     }
 }
