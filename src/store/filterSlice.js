@@ -9,13 +9,13 @@ const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        showFilter: (state, action) => {
+        showFilter: (state) => {
             state.isFilterOn = true;
         },
-        disableFilter: (state, action) => {
+        disableFilter: (state) => {
             state.isFilterOn = false;
         },
-        clearFilter: (state, action) => {
+        clearFilter: (state) => {
             state.isFilterOn = false;
             state.filter = {};
         }

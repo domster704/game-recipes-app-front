@@ -90,7 +90,6 @@ class App extends React.Component {
         this.props.addRecipe({
             id: Math.random().toString(36).substring(7),
             title: action.recipeTitle,
-            completed: false,
             description: '',
             ingredients: '',
             tags: []
