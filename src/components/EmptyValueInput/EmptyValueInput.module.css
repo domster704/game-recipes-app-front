@@ -1,0 +1,21 @@
+.emptyValueInput :is(textarea, input) {
+    outline: none;
+    border: none;
+    background-color: #EDEFF5;
+    padding: 16px 18px;
+    border-radius: 4px;
+}
+
+.emptyValueInput {
+    display: flex;
+    gap: 12px;
+    margin: 12px 0;
+    align-items: end;
+    height: 100%;
+}
+
+.emptyValueInput svg {
+    width: 24px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}

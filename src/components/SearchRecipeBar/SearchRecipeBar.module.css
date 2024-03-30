@@ -1,0 +1,35 @@
+.form_search_recipe {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.form_search_recipe p {
+    font-weight: 400;
+    font-size: 24px;
+    color: #000;
+    margin-top: 80px;
+}
+
+.search_input::placeholder {
+    color: rgba(33, 33, 33, 0.7);
+}
+
+.search_input {
+    width: 100%;
+    outline: none;
+    border: none;
+    margin-top: 48px;
+    padding: 17px 32px;
+
+    font-weight: 400;
+    font-size: 24px;
+    color: rgba(33, 33, 33, 0.7);
+
+    box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.25);
+    background: #fff;
+    border-radius: 45px;
+    height: 2em;
+
+    position: relative;
+    z-index: 10;
+}

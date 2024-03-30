@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import s from './EmptyValueInput.module.css';
 
 const EmptyValueInput = (props) => {
     /** @type {boolean} true if type is input; false if type is textarea */
@@ -10,7 +10,7 @@ const EmptyValueInput = (props) => {
     const inputBlock = isInputOrTextArea ? <input ref={inputRef} type="text" placeholder={props.placeholder} /> : <textarea ref={inputRef} placeholder={props.placeholder} />;
 
     return (
-        <div className='emptyValueInput'>
+        <div className={s.emptyValueInput}>
             {inputBlock}
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={() => props.onClickSVG(inputRef)}>
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

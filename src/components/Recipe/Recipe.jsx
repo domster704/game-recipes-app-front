@@ -1,18 +1,22 @@
 import React from "react";
 
-import "../App.css";
-import EmptyValueInput from "./EmptyValueInput/EmptyValueInput";
-import {useDispatch, useSelector} from "react-redux";
-import {updateDescription, updateIngredients, updateTags} from "../store/recipeSlice";
+import s from "./Recipe.module.css";
+import EmptyValueInput from "../EmptyValueInput/EmptyValueInput";
+import {useDispatch} from "react-redux";
+import {updateDescription, updateIngredients, updateTags} from "../../store/recipeSlice";
 
 
-export const CardItem = (props) => {
+/**
+ * Компонент рецепта
+ * @param props {{item: Object}}
+ * @returns {Element}
+ */
+export const Recipe = (props) => {
     const dispatch = useDispatch();
-    const recipesStore = useSelector((state) => state.recipes);
-    const {item, index, onDone} = props;
+    const {item} = props;
 
     return (
-        <div className="task-item">
+        <div className={s.task_item}>
             <h3>{item.title}</h3>
             {
                 item.description && <p>{item.description}</p> ||
@@ -24,14 +28,14 @@ export const CardItem = (props) => {
                     input.value = '';
                 }}/>
             }
-            <div className="data-container">
-                <div className="data-list">
+            <div className={s.data_container}>
+                <div className={s.data_list}>
                     {
                         item.ingredients &&
                         <>
-                            <span className="ingredients">Ингредиенты:</span>
+                            <span className={s.ingredients}>Ингредиенты:</span>
                             {item.ingredients.map((ingredient, i) => {
-                                return <p className="tag" key={i}>{ingredient}</p>;
+                                return <p className={s.tag} key={i}>{ingredient}</p>;
                             })}
                         </>
                     }
@@ -43,10 +47,10 @@ export const CardItem = (props) => {
                         input.value = '';
                     }}/>
                 </div>
-                <div className="data-list">
+                <div className={s.data_list}>
                     {
                         item.tags.length > 0 && item.tags.map((tag, i) => {
-                            return <div className="tag" key={i}>{tag}</div>;
+                            return <div className={s.tag} key={i}>{tag}</div>;
                         })
                     }
                     <EmptyValueInput placeholder="Теги" type="input" onClickSVG={(input) => {
@@ -57,7 +61,6 @@ export const CardItem = (props) => {
                     }}/>
                 </div>
             </div>
-
         </div>
     )
 }

@@ -1,0 +1,8 @@
+.recipe_list {
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+    margin: 36px 0 144px;
+    padding: 0;
+    list-style: none;
+}

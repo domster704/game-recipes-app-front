@@ -24,14 +24,22 @@ module.exports = {
                 }
             }, {
                 test: /\.css$/,
+                exclude: /\.module\.css$/,
                 use: [
                     'style-loader',
-                    'css-loader',
-                    // {
-                    //     // options: {
-                    //     //     modules: true
-                    //     // }
-                    // }
+                    'css-loader'
+                ]
+            }, {
+                test: /\.module.css$/,
+                use: [
+                    'style-loader',
+                    // 'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    }
                 ]
             }, {
                 test: /\.(png|jpg|gif)$/,

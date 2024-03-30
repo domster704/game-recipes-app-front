@@ -8,6 +8,7 @@ div .NativePanel {
     width: 100%;
     height: unset;
     backdrop-filter: unset;
+    z-index: 1;
 }
 
 div .Bubble {

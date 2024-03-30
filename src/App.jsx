@@ -1,11 +1,12 @@
 import React from "react";
 import {createAssistant, createSmartappDebugger,} from "@salutejs/client";
 
-import "./App.css";
+import s from "./App.module.css";
 import "./voiceSber.css";
-import {CardsList} from './pages/CardsList';
 import {addRecipe, removeRecipe} from "./store/recipeSlice";
 import {connect} from "react-redux";
+import {SearchRecipeBar} from "./components/SearchRecipeBar/SearchRecipeBar";
+import {RecipeList} from "./components/RecipeList/RecipeList";
 
 
 const initializeAssistant = (getState/*: any*/) => {
@@ -87,7 +88,7 @@ class App extends React.Component {
     new_card(action) {
         this.props.addRecipe({
             id: Math.random().toString(36).substring(7),
-            title: action.note,
+            title: action.recipeTitle,
             completed: false,
             description: '',
             ingredients: '',
@@ -131,17 +132,20 @@ class App extends React.Component {
 
     render() {
         return (
-            // <div className=""></div>
-            <CardsList
-                items={Object.keys(this.props.recipes).map(key => this.props.recipes[key])}
-                onAdd={(note) => {
-                    this.new_card({type: "add_note", note});
-                }}
-                onDone={(note) => {
-                    this.play_done_note(note.id);
-                    this.done_note({type: "done_note", id: note.id});
-                }}
-            />
+            <main className={s.container}>
+                <SearchRecipeBar
+                    onAdd={(recipeTitle) => {
+                        this.new_card({type: "add_note", recipeTitle});
+                    }}
+                />
+                <RecipeList
+                    items={Object.keys(this.props.recipes).map(key => this.props.recipes[key])}
+                    onDone={(note) => {
+                        this.play_done_note(note.id);
+                        this.done_note({type: "done_note", id: note.id});
+                    }}
+                />
+            </main>
         )
     }
 }
