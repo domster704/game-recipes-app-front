@@ -3,10 +3,10 @@ import s from './FilterButton.module.css';
 import {useDispatch} from "react-redux";
 import {showFilter} from "../../store/filterSlice";
 
-export const FilterPanel = (props) => {
+export const FilterButton = (props) => {
     const dispatch = useDispatch();
 
     return (
-        <button className={s.filter} onClick={() => dispatch(showFilter())}>Фильтр</button>
+        <button className={s.filterButton} onClick={() => dispatch(showFilter())}>Фильтр</button>
     );
 }

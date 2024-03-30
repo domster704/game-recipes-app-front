@@ -7,6 +7,7 @@ import {addRecipe, removeRecipe} from "./store/recipeSlice";
 import {connect} from "react-redux";
 import {SearchRecipeBar} from "./components/SearchRecipeBar/SearchRecipeBar";
 import {RecipeList} from "./components/RecipeList/RecipeList";
+import {FilterPanel} from "./components/FilterPanel/FilterPanel";
 
 
 const initializeAssistant = (getState/*: any*/) => {
@@ -132,20 +133,23 @@ class App extends React.Component {
 
     render() {
         return (
-            <main className={s.container}>
-                <SearchRecipeBar
-                    onAdd={(recipeTitle) => {
-                        this.new_card({type: "add_note", recipeTitle});
-                    }}
-                />
-                <RecipeList
-                    items={Object.keys(this.props.recipes).map(key => this.props.recipes[key])}
-                    onDone={(note) => {
-                        this.play_done_note(note.id);
-                        this.done_note({type: "done_note", id: note.id});
-                    }}
-                />
-            </main>
+            <>
+                {this.props.filter.isFilterOn && <FilterPanel isOpen={this.props.filter.isFilterOn}/>}
+                <main className={s.container}>
+                    <SearchRecipeBar
+                        onAdd={(recipeTitle) => {
+                            this.new_card({type: "add_note", recipeTitle});
+                        }}
+                    />
+                    <RecipeList
+                        items={Object.keys(this.props.recipes).map(key => this.props.recipes[key])}
+                        onDone={(note) => {
+                            this.play_done_note(note.id);
+                            this.done_note({type: "done_note", id: note.id});
+                        }}
+                    />
+                </main>
+            </>
         )
     }
 }
@@ -153,6 +157,7 @@ class App extends React.Component {
 const mapStateToProps = state => {
     return {
         recipes: state.recipes.recipes,
+        filter: state.filter,
     }
 }
 

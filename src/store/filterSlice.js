@@ -12,6 +12,9 @@ const filterSlice = createSlice({
         showFilter: (state, action) => {
             state.isFilterOn = true;
         },
+        disableFilter: (state, action) => {
+            state.isFilterOn = false;
+        },
         clearFilter: (state, action) => {
             state.isFilterOn = false;
             state.filter = {};
@@ -19,5 +22,5 @@ const filterSlice = createSlice({
     }
 });
 
-export const {showFilter, clearFilter} = filterSlice.actions;
+export const {showFilter, clearFilter, disableFilter} = filterSlice.actions;
 export default filterSlice.reducer
