@@ -8,13 +8,13 @@ let initialState = {
         ingredients: ['Картофель 6шт', 'Сметана 3шт', 'Перец 4шт'],
         tags: ["Genshin Impact", "Мондштадт", "3*"]
     },
-    'i9rsph': {
-        id: 'i9rsph',
-        title: 'Рецепт 2',
-        description: '',
-        ingredients: [],
-        tags: []
-    },
+    // 'i9rsph': {
+    //     id: 'i9rsph',
+    //     title: 'Рецепт 2',
+    //     description: '',
+    //     ingredients: [],
+    //     tags: []
+    // },
 }
 
 const recipeSlice = createSlice({
