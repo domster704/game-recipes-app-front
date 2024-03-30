@@ -4,6 +4,7 @@ import s from "./Recipe.module.css";
 import EmptyValueInput from "../EmptyValueInput/EmptyValueInput";
 import {useDispatch} from "react-redux";
 import {updateDescription, updateIngredients, updateTags} from "../../store/recipeSlice";
+import {Tag} from "../Tag/Tag";
 
 
 /**
@@ -35,7 +36,7 @@ export const Recipe = (props) => {
                         <>
                             <span className={s.ingredients}>Ингредиенты:</span>
                             {item.ingredients.map((ingredient, i) => {
-                                return <p className={s.tag} key={i}>{ingredient}</p>;
+                                return <Tag key={i}>{ingredient}</Tag>;
                             })}
                         </>
                     }
@@ -50,7 +51,7 @@ export const Recipe = (props) => {
                 <div className={s.data_list}>
                     {
                         item.tags.length > 0 && item.tags.map((tag, i) => {
-                            return <div className={s.tag} key={i}>{tag}</div>;
+                            return <Tag key={i}>{tag}</Tag>;
                         })
                     }
                     <EmptyValueInput placeholder="Теги" type="input" onClickSVG={(input) => {

@@ -8,7 +8,28 @@ let initialState = {
             description: 'Картофельное пюре с приправами. Картофель раздавлен в пюре с нежной текстурой и полит соусом. Вкус мягкий и богатый. Такое пюре удовлетворит любой голодный желудок, и не важно, гарнир это или основное блюдо.',
             ingredients: ['Картофель 6шт', 'Сметана 3шт', 'Перец 4шт'],
             tags: ["Genshin Impact", "Мондштадт", "3*"]
+        },
+        'test': {
+            id: 'test',
+            title: 'Котлетка',
+            description: 'Картофельное пюре с приправами. Картофель раздавлен в пюре с нежной текстурой и полит соусом. Вкус мягкий и богатый. Такое пюре удовлетворит любой голодный желудок, и не важно, гарнир это или основное блюдо.',
+            ingredients: ['Мясо', 'Лук'],
+            tags: []
         }
+    },
+    getAllIngredients: () => {
+        let allIngredients = [];
+        for(let key in initialState.recipes) {
+            allIngredients = allIngredients.concat(initialState.recipes[key].ingredients);
+        }
+        return allIngredients;
+    },
+    getAllTags: () => {
+        let allTags = [];
+        for(let key in initialState.recipes) {
+            allTags = allTags.concat(initialState.recipes[key].tags);
+        }
+        return allTags;
     }
 }
 
