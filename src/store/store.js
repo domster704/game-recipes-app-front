@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
-import recipeSlice, {addRecipe, removeRecipe} from "./recipeSlice";
+import recipeSlice from "./recipeSlice";
+import filterSlice from "./filterSlice";
 
 const store = configureStore({
     reducer: {
-        recipes: recipeSlice
+        recipes: recipeSlice,
+        filter: filterSlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false
