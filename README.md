@@ -1,4 +1,4 @@
-# cooking-app-front
+# CookingApp
 
 Это небольшое Todo приложение (добавление, выполнение и удаление задач. [См. видео](https://youtu.be/P-o2rwHhARo)) демонстрирует пример взаимодействия с [Assistant Client](https://github.com/sberdevices/assistant-client). 
 
