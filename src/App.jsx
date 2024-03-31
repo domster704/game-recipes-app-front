@@ -91,7 +91,7 @@ class App extends React.Component {
             id: Math.random().toString(36).substring(7),
             title: action.recipeTitle,
             description: '',
-            ingredients: '',
+            ingredients: [],
             tags: []
         });
     }
