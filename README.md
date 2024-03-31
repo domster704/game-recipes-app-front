@@ -12,8 +12,9 @@
 - Sber Assistant
 
 # Фото веб-приложения
-![image](https://github.com/domster704/game-recipes-app-front/assets/61056244/6a7bf973-bed5-40e7-88ee-162490c9b98d)
+![image](https://github.com/domster704/game-recipes-app-front/assets/61056244/79f92a06-9762-4b65-aeed-39e18e7462da)
 
-![image](https://github.com/domster704/game-recipes-app-front/assets/61056244/bd3cc83d-851e-401a-b4a4-d36eedec8d98)
+![image](https://github.com/domster704/game-recipes-app-front/assets/61056244/a12cb7a2-f5cd-45e0-9064-0e68fe1d0bbb)
+
 
 
