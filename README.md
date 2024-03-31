@@ -9,6 +9,7 @@
 
 ## Стек технологий
 - ReactJS, JS
+- Redux, Redux/Toolkit 
 - Webpack
 - Babel
 - HTML, CSS
