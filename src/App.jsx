@@ -2,23 +2,28 @@ import React from "react";
 import {createAssistant, createSmartappDebugger,} from "@salutejs/client";
 
 import s from "./App.module.css";
-import "./voiceSber.css";
+import "./voiceSberOldUI.css";
 import {addRecipe, removeRecipe} from "./store/recipeSlice";
 import {connect} from "react-redux";
-import {SearchRecipeBar} from "./components/SearchRecipeBar/SearchRecipeBar";
-import {RecipeList} from "./components/RecipeList/RecipeList";
-import {FilterPanel} from "./components/FilterPanel/FilterPanel";
+import {SearchRecipeBar} from "./components/OldUI/SearchRecipeBar/SearchRecipeBar";
+import {RecipeList} from "./components/OldUI/RecipeList/RecipeList";
+import {FilterPanel} from "./components/OldUI/FilterPanel/FilterPanel";
 
-
-const initializeAssistant = (getState/*: any*/) => {
-    if (process.env.NODE_ENV === "development") {
+const initializeAssistant = (getState /*: any*/, getRecoveryState) => {
+    if (process.env.NODE_ENV === 'development') {
         return createSmartappDebugger({
-            token: process.env.REACT_APP_TOKEN ?? "",
+            token: process.env.REACT_APP_TOKEN ?? '',
             initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
             getState,
+            nativePanel: {
+                defaultText: 'Добавить рецепт',
+                screenshotMode: false,
+                tabIndex: -1,
+            },
         });
+    } else {
+        return createAssistant({getState});
     }
-    return createAssistant({getState});
 };
 
 
@@ -82,7 +87,7 @@ class App extends React.Component {
             case 'done_note':
                 return this.done_note(action);
             default:
-                throw new Error();
+                return;
         }
     }
 
@@ -104,17 +109,18 @@ class App extends React.Component {
         const data = {
             action: {
                 action_id: action_id,
-                parameters: {   // значение поля parameters может любым, но должно соответствовать серверной логике
+                parameters: {
+                    // значение поля parameters может быть любым, но должно соответствовать серверной логике
                     value: value, // см.файл src/sc/noteDone.sc смартаппа в Studio Code
-                }
-            }
+                },
+            },
         };
-        const unsubscribe = this.assistant.sendData(
-            data,
-            (data) => {   // функция, вызываемая, если на sendData() был отправлен ответ
-                const {type, payload} = data;
-                unsubscribe();
-            });
+        const unsubscribe = this.assistant.sendData(data, (data) => {
+            // функция, вызываемая, если на sendData() был отправлен ответ
+            const {type, payload} = data;
+            console.log('sendData onData:', type, payload);
+            unsubscribe();
+        });
     }
 
     play_done_note(id) {
@@ -133,6 +139,7 @@ class App extends React.Component {
     render() {
         return (
             <>
+
                 {this.props.filter.isFilterOn && <FilterPanel isOpen={this.props.filter.isFilterOn}/>}
                 <main className={s.container}>
                     <SearchRecipeBar

@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import './voiceSber.css';
+import './voiceSberNewUI.css';
 import App from "./App";
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux'

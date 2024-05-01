@@ -2,7 +2,10 @@ import {createSlice} from "@reduxjs/toolkit";
 
 let initialState = {
     isFilterOn: false,
-    filter: {}
+    filter: {
+        name: "",
+        category: "",
+    }
 }
 
 const filterSlice = createSlice({
@@ -18,9 +21,21 @@ const filterSlice = createSlice({
         clearFilter: (state) => {
             state.isFilterOn = false;
             state.filter = {};
+        },
+        setNameFilter: (state, action) => {
+            state.filter.name = action.payload;
+        },
+        setCategoryFilter: (state, action) => {
+            state.filter.category = action.payload;
         }
     }
 });
 
-export const {showFilter, clearFilter, disableFilter} = filterSlice.actions;
+export const {
+    showFilter,
+    clearFilter,
+    disableFilter,
+    setNameFilter,
+    setCategoryFilter
+} = filterSlice.actions;
 export default filterSlice.reducer

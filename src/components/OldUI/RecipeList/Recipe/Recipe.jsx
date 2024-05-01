@@ -1,10 +1,10 @@
 import React from "react";
 
 import s from "./Recipe.module.css";
-import EmptyValueInput from "../EmptyValueInput/EmptyValueInput";
+import EmptyValueInput from "./EmptyValueInput/EmptyValueInput";
 import {useDispatch} from "react-redux";
-import {updateDescription, updateIngredients, updateTags} from "../../store/recipeSlice";
-import {Tag} from "../Tag/Tag";
+import {updateDescription, updateIngredients, updateTags} from "../../../../store/recipeSlice";
+import {Tag} from "../../Tag/Tag";
 
 
 /**

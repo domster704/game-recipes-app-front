@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './FilterPanel.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {disableFilter} from "../../store/filterSlice";
+import {disableFilter} from "../../../store/filterSlice";
 import {Tag} from "../Tag/Tag";
 
 export const FilterPanel = () => {

@@ -1,5 +1,7 @@
 import React from "react";
 import s from "./SearchRecipeBar.module.css";
+import {useDispatch} from "react-redux";
+import {setNameFilter} from "../../../store/filterSlice";
 
 /**
  * Поисковой блок для поиска рецептов. Если рецепт не найден, то создается новый
@@ -7,6 +9,7 @@ import s from "./SearchRecipeBar.module.css";
  * @returns {Element}
  */
 export const SearchRecipeBar = (props) => {
+    const dispatch = useDispatch();
     let [recipeTitle, setRecipeTitle] = React.useState('');
 
     const {onAdd} = props;
@@ -14,8 +17,7 @@ export const SearchRecipeBar = (props) => {
     return (
         <form className={s.form_search_recipe} onSubmit={(event) => {
             event.preventDefault();
-            onAdd(recipeTitle);
-            setRecipeTitle('');
+            dispatch(setNameFilter(recipeTitle));
         }}>
             <input
                 className={s.search_input}
