@@ -4,12 +4,23 @@
     margin: 0;
     padding: 0;
     transition: all .2s ease;
+    position: relative;
+    color: #404040;
 }
 
 body {
     background-color: #fff;
 }
 
+button, input, textarea {
+    outline: none;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+}
+
 :root {
-  --font-family: "Inter", sans-serif;
+    --font-family: "Inter", sans-serif;
 }

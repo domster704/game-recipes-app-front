@@ -1,13 +1,12 @@
 import React from "react";
 import {createAssistant, createSmartappDebugger,} from "@salutejs/client";
-
-import s from "./App.module.css";
-import "./voiceSberOldUI.css";
+import "./voiceSberNewUI.css";
 import {addRecipe, removeRecipe} from "./store/recipeSlice";
 import {connect} from "react-redux";
-import {SearchRecipeBar} from "./components/OldUI/SearchRecipeBar/SearchRecipeBar";
-import {RecipeList} from "./components/OldUI/RecipeList/RecipeList";
-import {FilterPanel} from "./components/OldUI/FilterPanel/FilterPanel";
+import FilterPanel from "./components/NewUI/FilterPanel/FilterPanel";
+import RecipeList from "./components/NewUI/RecipeList/RecipeList";
+import s from "./App.module.css";
+import AddingRecipePanel from "./components/NewUI/AddingRecipePanel/AddingRecipePanel";
 
 const initializeAssistant = (getState /*: any*/, getRecoveryState) => {
     if (process.env.NODE_ENV === 'development') {
@@ -36,6 +35,7 @@ class App extends React.Component {
         }
 
         this.assistant = initializeAssistant(() => this.getStateForAssistant());
+        console.log(this.assistant)
 
         this.assistant.on("data", (event/*: any*/) => {
             if (event.type === "character") {
@@ -68,8 +68,8 @@ class App extends React.Component {
     getStateForAssistant() {
         return {
             item_selector: {
-                items: Object.keys(this.props.recipes).map((key) => {
-                    return this.props.recipes[key]
+                items: Object.keys(this.props.recipesStore.recipes).map((key) => {
+                    return this.props.recipesStore.recipes[key]
                 })
             },
         };
@@ -124,7 +124,7 @@ class App extends React.Component {
     }
 
     play_done_note(id) {
-        const completed = this.props.recipes.find(({id}) => id)?.completed;
+        const completed = this.props.recipesStore.recipes.find(({id}) => id)?.completed;
         if (!completed) {
             const texts = ['Молодец!', 'Красавчик!', 'Супер!'];
             const idx = Math.random() * texts.length | 0;
@@ -137,33 +137,38 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.props.recipesStore)
         return (
-            <>
-
-                {this.props.filter.isFilterOn && <FilterPanel isOpen={this.props.filter.isFilterOn}/>}
-                <main className={s.container}>
-                    <SearchRecipeBar
-                        onAdd={(recipeTitle) => {
-                            this.new_card({type: "add_note", recipeTitle});
-                        }}
-                    />
-                    <RecipeList
-                        items={Object.keys(this.props.recipes).map(key => this.props.recipes[key])}
-                        onDone={(note) => {
-                            this.play_done_note(note.id);
-                            this.done_note({type: "done_note", id: note.id});
-                        }}
-                    />
-                </main>
-            </>
+            <div className={`${s.app} ${this.props.recipesStore.isAddNewRecipeOn && s.three_column}`}>
+                <FilterPanel/>
+                <RecipeList/>
+                {
+                    this.props.recipesStore.isAddNewRecipeOn && <AddingRecipePanel/>
+                }
+                {/*{this.props.filterStore.isFilterOn && <FilterPanel isOpen={this.props.filterStore.isFilterOn}/>}*/}
+                {/*<main className={s.container}>*/}
+                {/*    <SearchRecipeBar*/}
+                {/*        onAdd={(recipeTitle) => {*/}
+                {/*            this.new_card({type: "add_note", recipeTitle});*/}
+                {/*        }}*/}
+                {/*    />*/}
+                {/*    <RecipeList*/}
+                {/*        items={Object.keys(this.props.recipesStore.recipes).map(key => this.props.recipesStore.recipes[key])}*/}
+                {/*        onDone={(note) => {*/}
+                {/*            this.play_done_note(note.id);*/}
+                {/*            this.done_note({type: "done_note", id: note.id});*/}
+                {/*        }}*/}
+                {/*    />*/}
+                {/*</main>*/}
+            </div>
         )
     }
 }
 
 const mapStateToProps = state => {
     return {
-        recipes: state.recipes.recipes,
-        filter: state.filter,
+        recipesStore: state.recipes,
+        filterStore: state.filter,
     }
 }
 

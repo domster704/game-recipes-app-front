@@ -1,0 +1,72 @@
+.form_search_recipe {
+    width: max(400px, 100%);
+}
+
+.form_search_recipe p {
+    font-weight: 400;
+    font-size: 24px;
+    color: #000;
+}
+
+.search_input::placeholder {
+    color: rgba(33, 33, 33, 0.7);
+}
+
+.search_bar button {
+    background: transparent;
+}
+
+.search_bar button img {
+    height: 32px;
+    width: 32px;
+}
+
+.search_bar {
+    width: 100%;
+    box-shadow: 2px 5px 5px 0 rgba(0, 0, 0, 0.12);
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 10;
+    padding: 0 16px 0 12px;
+    border: 1px solid #40404010;
+
+    display: flex;
+    gap: 4px;
+}
+
+.search_input {
+    width: 100%;
+    padding: 0 20px;
+
+    font-weight: 400;
+    font-size: 24px;
+    color: rgba(33, 33, 33, 0.7);
+
+    height: 2em;
+    position: relative;
+}
+
+
+@media screen and (max-width: 1601px) {
+    .form_search_recipe {
+        width: max(300px, 80%);
+    }
+
+    .search_input {
+        width: 100%;
+        padding: 0 20px;
+
+        font-weight: 400;
+        font-size: 18px;
+        color: rgba(33, 33, 33, 0.7);
+
+        height: 2em;
+        position: relative;
+    }
+
+    .search_bar button img {
+        height: 24px;
+        width: 24px;
+    }
+}

@@ -12,7 +12,6 @@
     border-radius: 4px;
     font-weight: 400;
     font-size: 16px;
-    color: #000;
     padding: 6px 22px;
 
     display: flex;
@@ -20,3 +19,12 @@
     white-space: pre;
 }
 
+.app {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    column-gap: 30px;
+}
+
+.app.three_column {
+    grid-template-columns: 1fr 2fr 2fr;
+}

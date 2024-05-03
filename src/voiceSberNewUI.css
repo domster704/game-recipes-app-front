@@ -1,10 +1,10 @@
 div .NativePanel {
-    position: absolute;
+    position: fixed;
     display: block;
     background: unset;
     padding: 48px 24px 24px 24px;
-    top: 0;
-    bottom: unset;
+    bottom: 0;
+    top: unset;
     width: 100%;
     height: unset;
     backdrop-filter: unset;

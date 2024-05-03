@@ -1,0 +1,85 @@
+.recipe {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 14px;
+}
+
+.recipe::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+    filter: blur(1px);
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.separator {
+    display: block;
+    min-height: 21px;
+    height: 100%;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.6);
+    filter: blur(2px);
+}
+
+.title {
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.category {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    color: #000;
+}
+
+.recipePeopleBlock {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.recipeTimeBlock {
+    display: flex;
+}
+
+.time_text {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.time_bottom_text {
+    font-weight: 500;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.4);
+    line-height: 25%;
+}
+
+.descriptionBlock p {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1601px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .category {
+        font-size: 16px;
+    }
+
+    .descriptionBlock p {
+        font-weight: 400;
+        font-size: 16px;
+    }
+}

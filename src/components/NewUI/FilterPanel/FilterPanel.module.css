@@ -1,0 +1,57 @@
+.panel {
+    position: sticky;
+    min-height: 100vh;
+    padding: 100px 42px 161px 42px;
+    background: #ededed;
+    max-width: 100%;
+
+    top: 0;
+}
+
+.panel h2 {
+    font-weight: 600;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.sub_categories {
+    --margin-left: 51px;
+    margin-left: var(--margin-left);
+}
+
+.sub_categories p {
+    font-weight: 400;
+    font-size: 32px;
+    cursor: pointer;
+    min-width: 246px;
+
+    padding: 6px 0;
+}
+
+.sub_categories p::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, .2);
+}
+
+@media screen and (max-width: 1601px) {
+    .panel h2 {
+        font-size: 24px;
+    }
+
+    .sub_categories {
+        --margin-left: 25px;
+    }
+
+    .sub_categories p {
+        font-size: 24px;
+    }
+
+    .panel {
+        padding: 75px 24px 161px 24px;
+    }
+}

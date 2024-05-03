@@ -1,0 +1,143 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 25px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.top_buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.separator {
+    display: block;
+    --width: 70%;
+    width: var(--width);
+    height: 1px;
+    background: #40404030;
+    filter: blur(1px);
+    margin: 15px calc((100% - var(--width)) / 2);
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.6);
+    filter: blur(2px);
+}
+
+.inputBlock {
+
+}
+
+.inputBlock p {
+    font-weight: 700;
+    font-size: 16px;
+    color: #27b53c;
+}
+
+.inputBlock :is(input, textarea) {
+    font-size: 16px;
+    /*border-bottom: 1px solid #40404044;*/
+}
+
+.inputBlock textarea {
+    border: 1px solid #40404020;
+    border-radius: 4px;
+    padding: 4px;
+    min-width: min(30rem, 80%);
+    min-height: 5rem;
+}
+
+.inputBlock_title input {
+    color: #404040;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.categoriesBlock > input {
+    margin-top: 6px;
+}
+
+.addCategoryButton {
+    display: block;
+    background: transparent;
+    font-size: 1.5rem;
+    border: 1px solid #404040;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    margin-top: 6px;
+}
+
+.addCategoryButton:hover {
+    background: #404040;
+    color: #d9d9d9;
+}
+
+.ingredientsList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.removeCategoryButton {
+    background: transparent;
+    font-size: 0.75rem;
+    aspect-ratio: 1 / 1;
+    width: 1.5rem;
+    height: auto;
+    border: 1px solid #404040;
+    border-radius: 50%;
+}
+
+.removeCategoryButton:hover {
+    background: #404040;
+    color: #d9d9d9;
+}
+
+.ingredientElement {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.stepsBlock textarea {
+    min-height: 300px;
+}
+
+.top_buttons button {
+    font-size: 1rem;
+    border-radius: 1rem;
+    background: transparent;
+    padding: 8px 12px;
+}
+
+.top_buttons .saveButton {
+    background: #27b53c;
+    color: white;
+    border: 1px solid #27b53c;
+}
+
+.top_buttons .saveButton:hover {
+    background: white;
+    color: #27b53c;
+    border: 1px solid #27b53c;
+}
+
+.top_buttons .cancelButton {
+    background: transparent;
+    border: 1px solid #404040;
+}
+
+.top_buttons .cancelButton:hover {
+    background: #404040;
+    color: white;
+}
