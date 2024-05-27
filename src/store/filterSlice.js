@@ -5,7 +5,7 @@ let initialState = {
 
     filter: {
         name: "",
-        category: "",
+        category: ""
     }
 }
 

@@ -1,11 +1,25 @@
+.recipeBlock {
+    padding-bottom: 0.875em;
+}
+
 .recipe {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    padding-bottom: 14px;
+    gap: 1.125em;
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 0.75em;
 }
 
-.recipe::after {
+.recipe:hover {
+    background: #27b53c;
+}
+
+.recipe:hover * {
+    color: #F1F1F1;
+}
+
+.recipeBlock::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -18,12 +32,12 @@
 .top {
     display: flex;
     align-items: center;
-    gap: 9px;
+    gap: 0.625em;
 }
 
 .separator {
     display: block;
-    min-height: 21px;
+    min-height: 1.25em;
     height: 100%;
     width: 1px;
     background: rgba(0, 0, 0, 0.6);
@@ -32,19 +46,18 @@
 
 .title {
     font-weight: 600;
-    font-size: 32px;
+    font-size: 2em;
 }
 
 .category {
-    font-family: var(--font-family);
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25em;
     color: #000;
 }
 
 .recipePeopleBlock {
     display: flex;
-    gap: 8px;
+    gap: 0.5em;
     align-items: center;
 }
 
@@ -54,32 +67,32 @@
 
 .time_text {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
 }
 
 .time_bottom_text {
     font-weight: 500;
-    font-size: 11px;
+    font-size: 0.75em;
     color: rgba(0, 0, 0, 0.4);
     line-height: 25%;
 }
 
 .descriptionBlock p {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25em;
 }
 
 @media screen and (max-width: 1601px) {
     .title {
-        font-size: 24px;
+        font-size: 1.5em;
     }
 
     .category {
-        font-size: 16px;
+        font-size: 1em;
     }
 
     .descriptionBlock p {
         font-weight: 400;
-        font-size: 16px;
+        font-size: 1em;
     }
 }

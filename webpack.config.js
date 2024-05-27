@@ -61,7 +61,7 @@ module.exports = {
             directory: __dirname + '/build',
         },
         compress: true,
-        port: 9000,
+        port: 10000,
         client: {
             progress: false,
         },

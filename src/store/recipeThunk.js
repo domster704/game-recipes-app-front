@@ -15,6 +15,20 @@ export const addNewRecipe = createAsyncThunk(
     }
 );
 
+export const updateRecipe = createAsyncThunk(
+    'recipe/updateRecipe',
+    async ({recipe}, thunkAPI) => {
+        let response = await fetch(`${apiUrl}/update_recipe`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(recipe),
+        });
+        return response.json();
+    }
+);
+
 export const getRecipes = createAsyncThunk(
     'recipe/getRecipes',
     async (_, thunkAPI) => {

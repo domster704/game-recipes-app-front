@@ -1,7 +1,7 @@
 .panel {
     position: sticky;
     min-height: 100vh;
-    padding: 100px 42px 161px 42px;
+    padding: 6.25em 2.625em 10em 2.625em;
     background: #ededed;
     max-width: 100%;
 
@@ -10,22 +10,23 @@
 
 .panel h2 {
     font-weight: 600;
-    font-size: 32px;
+    font-size: 2em;
     cursor: pointer;
 }
 
 .sub_categories {
-    --margin-left: 51px;
+    --margin-left: 1.5em;
     margin-left: var(--margin-left);
 }
 
 .sub_categories p {
     font-weight: 400;
-    font-size: 32px;
+    font-size: 1.5em;
     cursor: pointer;
-    min-width: 246px;
+    min-width: 10em;
 
-    padding: 6px 0;
+    padding: 0.375em 0;
+    background: transparent;
 }
 
 .sub_categories p::after {
@@ -40,18 +41,18 @@
 
 @media screen and (max-width: 1601px) {
     .panel h2 {
-        font-size: 24px;
+        font-size: 1.5em;
     }
 
     .sub_categories {
-        --margin-left: 25px;
+        --margin-left: 1.5em;
     }
 
     .sub_categories p {
-        font-size: 24px;
+        font-size: 1.5em;
     }
 
     .panel {
-        padding: 75px 24px 161px 24px;
+        padding: 4.625em 1.5em 10em 1.5em;
     }
 }

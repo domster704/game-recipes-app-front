@@ -1,37 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {addNewRecipe, getRecipes} from "./recipeThunk";
+import {addNewRecipe, getRecipes, updateRecipe} from "./recipeThunk";
 
 let initialState = {
     isAddNewRecipeOn: true,
-    recipes: {
-        'xz3e7b': {
-            id: 'xz3e7b',
-            title: 'Ароматное пюре',
-            people: 1,
-            time: 25,
-            description: 'Картофельное пюре с приправами. Картофель раздавлен в пюре с нежной текстурой и полит соусом. Вкус мягкий и богатый. Такое пюре удовлетворит любой голодный желудок, и не важно, гарнир это или основное блюдо.',
-            ingredients: ['Картофель', 'Сметана', 'Перец'],
-            tags: ["Genshin Impact", "Мондштадт", "3*"],
-            category: "Genshin Impact"
-        },
-        'test': {
-            id: 'test',
-            title: 'Котлетка',
-            people: 2,
-            time: 105,
-            description: 'Картофельное пюре с приправами. Картофель раздавлен в пюре с нежной текстурой и полит соусом. Вкус мягкий и богатый. Такое пюре удовлетворит любой голодный желудок, и не важно, гарнир это или основное блюдо.',
-            ingredients: ['Мясо', 'Лук'],
-            tags: [],
-            category: "Life"
-        }
-    },
-    getAllCategories: () => {
-        let allCategories = [];
-        for (let key in initialState.recipes) {
-            allCategories = allCategories.concat(initialState.recipes[key].category);
-        }
-        return allCategories;
-    },
+    editIdRecipe: "",
+    recipes: {},
     /**
      * Функция для получения всех ингридиентов
      * @returns {Array<String>} - Список всех ингридиентов
@@ -54,7 +27,19 @@ let initialState = {
         }
         return allTags;
     },
+}
 
+/**
+ * Determine whether the given `input` is iterable.
+ *
+ * @returns {Boolean}
+ */
+function isIterable(object) {
+    if (object === null || object === undefined) {
+        return false
+    }
+
+    return typeof object[Symbol.iterator] === 'function'
 }
 
 const recipeSlice = createSlice({
@@ -107,16 +92,25 @@ const recipeSlice = createSlice({
          */
         removeRecipe: (state, action) => {
             delete state.recipes[action.payload.id];
+        },
+        setEditIdRecipe: (state, action) => {
+            state.editIdRecipe = action.payload;
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(addNewRecipe.fulfilled, (state, action) => {
-                console.log(action.payload);
+            })
+            .addCase(updateRecipe.fulfilled, (state, action) => {
             })
             .addCase(getRecipes.fulfilled, (state, action) => {
-                state.recipes = action.payload;
-                // console.log(action.payload);
+                console.log(action.payload)
+                if (!isIterable(action.payload)) {
+                    return;
+                }
+                for (let elem of action.payload) {
+                    state.recipes[elem.id] = elem;
+                }
             });
     }
 });
@@ -127,6 +121,7 @@ export const {
     updateDescription,
     updateIngredients,
     updateTags,
-    setAddNewRecipeOn
+    setAddNewRecipeOn,
+    setEditIdRecipe
 } = recipeSlice.actions;
 export default recipeSlice.reducer;

@@ -9,7 +9,26 @@ import {getRecipes} from "../../../store/recipeThunk";
 const RecipeList = () => {
     const dispatch = useDispatch();
     const recipeStore = useSelector((state) => state.recipes);
-    const items = Object.keys(recipeStore.recipes).map(key => recipeStore.recipes[key]);
+    const filterStore = useSelector((state) => state.filter);
+    const [items, setItems] = React.useState([]);
+
+    const doFilteringItems = (items) => {
+        return items.filter(item => {
+            const filter = filterStore.filter;
+
+            if (filter.category && item.category !== filter.category) {
+                return false;
+            }
+            if (filter.name && item.title && item.title.match(filter.name) === null) {
+                return false;
+            }
+            return true;
+        })
+    }
+
+    React.useEffect(() => {
+        setItems(doFilteringItems(Object.keys(recipeStore.recipes).map(key => recipeStore.recipes[key])));
+    }, [recipeStore.recipes, filterStore.filter.category, filterStore.filter.name]);
 
     const setAddNewRecipe = () => {
         dispatch(setAddNewRecipeOn(!recipeStore.isAddNewRecipeOn));

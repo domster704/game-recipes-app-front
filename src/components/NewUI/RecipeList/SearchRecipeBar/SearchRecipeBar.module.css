@@ -4,7 +4,7 @@
 
 .form_search_recipe p {
     font-weight: 400;
-    font-size: 24px;
+    font-size: 1.5em;
     color: #000;
 }
 
@@ -17,56 +17,56 @@
 }
 
 .search_bar button img {
-    height: 32px;
-    width: 32px;
+    height: 2em;
+    width: 2em;
 }
 
 .search_bar {
     width: 100%;
-    box-shadow: 2px 5px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0.125em 0.375em 5px 0 rgba(0, 0, 0, 0.12);
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
     z-index: 10;
-    padding: 0 16px 0 12px;
+    padding: 0 1em 0 0.75em;
     border: 1px solid #40404010;
 
     display: flex;
-    gap: 4px;
+    gap: 0.25em;
 }
 
 .search_input {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 0.83em;
 
     font-weight: 400;
-    font-size: 24px;
+    font-size: 1.5em;
     color: rgba(33, 33, 33, 0.7);
 
-    height: 2em;
+    height: 1.33em;
     position: relative;
 }
 
 
 @media screen and (max-width: 1601px) {
     .form_search_recipe {
-        width: max(300px, 80%);
+        width: max(18.75em, 80%);
     }
 
     .search_input {
         width: 100%;
-        padding: 0 20px;
+        padding: 0 0.9em;
 
         font-weight: 400;
-        font-size: 18px;
+        font-size: 1.125em;
         color: rgba(33, 33, 33, 0.7);
 
-        height: 2em;
+        height: 1.77em;
         position: relative;
     }
 
     .search_bar button img {
-        height: 24px;
-        width: 24px;
+        height: 1.5em;
+        width: 1.5em;
     }
 }

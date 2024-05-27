@@ -137,13 +137,13 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.props.recipesStore)
         return (
             <div className={`${s.app} ${this.props.recipesStore.isAddNewRecipeOn && s.three_column}`}>
                 <FilterPanel/>
                 <RecipeList/>
                 {
-                    this.props.recipesStore.isAddNewRecipeOn && <AddingRecipePanel/>
+                    this.props.recipesStore.isAddNewRecipeOn && <AddingRecipePanel
+                        recipe={this.props.recipesStore.recipes[this.props.recipesStore.editIdRecipe]}/>
                 }
                 {/*{this.props.filterStore.isFilterOn && <FilterPanel isOpen={this.props.filterStore.isFilterOn}/>}*/}
                 {/*<main className={s.container}>*/}

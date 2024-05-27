@@ -1,22 +1,24 @@
 .recipeListBlock {
-    margin-top: 36px;
-    margin-right: 36px;
+    margin-top: 2em;
+    margin-right: 2em;
 }
 
 .recipeListBlock header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 3.125em;
+    gap: 1em;
 }
 
 .recipeListBlock header h1 {
     font-weight: 600;
-    font-size: 36px;
+    font-size: 2em;
+    text-wrap: nowrap;
 }
 
 .header_right {
     display: flex;
-    gap: 38px;
+    gap: 2em;
     align-items: center;
     justify-content: end;
 }
@@ -26,27 +28,27 @@
 }
 
 .recipeList {
-    margin-left: 18px;
+    margin-left: 1.125em;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 1.5em;
 }
 
 @media screen and (max-width: 1601px) {
     .recipeListBlock header h1 {
         font-weight: 600;
-        font-size: 26px;
+        font-size: 1.625em;
     }
 
     .header_right {
         display: flex;
-        gap: 24px;
+        gap: 2em;
     }
 
     .recipeList {
         margin-left: 18px;
         display: flex;
         flex-direction: column;
-        gap: 18px;
+        gap: 1.125em;
     }
 }

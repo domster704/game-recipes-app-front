@@ -1,10 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding-top: 25px;
-    padding-left: 24px;
-    padding-right: 24px;
+    gap: 1em;
+    padding: 1.5em 1.5em 0 1.5em;
 }
 
 .top_buttons {
@@ -19,7 +17,7 @@
     height: 1px;
     background: #40404030;
     filter: blur(1px);
-    margin: 15px calc((100% - var(--width)) / 2);
+    margin: 1em calc((100% - var(--width)) / 2);
 }
 
 .container::before {
@@ -33,47 +31,43 @@
     filter: blur(2px);
 }
 
-.inputBlock {
-
-}
-
 .inputBlock p {
     font-weight: 700;
-    font-size: 16px;
+    font-size: 1em;
     color: #27b53c;
 }
 
 .inputBlock :is(input, textarea) {
-    font-size: 16px;
+    font-size: 1em;
     /*border-bottom: 1px solid #40404044;*/
 }
 
 .inputBlock textarea {
     border: 1px solid #40404020;
     border-radius: 4px;
-    padding: 4px;
-    min-width: min(30rem, 80%);
-    min-height: 5rem;
+    padding: 0.25em;
+    min-width: min(30em, 80%);
+    min-height: 5em;
 }
 
 .inputBlock_title input {
     color: #404040;
-    font-size: 32px;
-    margin-bottom: 30px;
+    font-size: 2em;
+    margin-bottom: 1em;
 }
 
 .categoriesBlock > input {
-    margin-top: 6px;
+    margin-top: 0.375em;
 }
 
 .addCategoryButton {
     display: block;
     background: transparent;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     border: 1px solid #404040;
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: 1.33em;
+    height: 1.33em;
     margin-top: 6px;
 }
 
@@ -90,9 +84,9 @@
 
 .removeCategoryButton {
     background: transparent;
-    font-size: 0.75rem;
+    font-size: 0.75em;
     aspect-ratio: 1 / 1;
-    width: 1.5rem;
+    width: 2em;
     height: auto;
     border: 1px solid #404040;
     border-radius: 50%;
@@ -105,19 +99,19 @@
 
 .ingredientElement {
     display: flex;
-    gap: 4px;
+    gap: 0.25em;
     align-items: center;
 }
 
 .stepsBlock textarea {
-    min-height: 300px;
+    min-height: 18.75em;
 }
 
 .top_buttons button {
-    font-size: 1rem;
-    border-radius: 1rem;
+    font-size: 1em;
+    border-radius: 1em;
     background: transparent;
-    padding: 8px 12px;
+    padding: 0.5em 0.75em;
 }
 
 .top_buttons .saveButton {

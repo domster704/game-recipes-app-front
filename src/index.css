@@ -8,6 +8,10 @@
     color: #404040;
 }
 
+html {
+    font-size: max(1em, 1vw);
+}
+
 body {
     background-color: #fff;
 }

@@ -1,30 +1,20 @@
 import React from 'react'
 import s from './AddingRecipePanel.module.css'
 import {useDispatch} from "react-redux";
-import {setAddNewRecipeOn} from "../../../store/recipeSlice";
-import {addNewRecipe, getRecipes} from "../../../store/recipeThunk";
+import {setAddNewRecipeOn, setEditIdRecipe} from "../../../store/recipeSlice";
+import {addNewRecipe, getRecipes, updateRecipe} from "../../../store/recipeThunk";
 
-const AddingRecipePanel = () => {
+const AddingRecipePanel = ({recipe}) => {
     const dispatch = useDispatch();
     const [ingredients, setIngredients] = React.useState([]);
 
+    React.useEffect(() => {
+        setIngredients(recipe?.ingredients || []);
+    }, [recipe?.id]);
     const addCategory = () => {
         setIngredients([...ingredients, ''])
     };
-    let a = {
-        "title": "Картофельное пюре",
-        "category": "Genshin Impact",
-        "people": "1",
-        "time": "25",
-        "description": "Пюрешечка",
-        "ingredients": [
-            "Молоко",
-            "Картофель",
-            "Соль",
-            "Вода"
-        ],
-        "instructions": "1. Разогреть воду\n2. Посолить воду\n3. Положить очищенный картофель в кастрюлю\n4. После варки смешать с молоком"
-    }
+
     const removeCategory = (index) => {
         setIngredients(ingredients.filter((_, i) => i !== index));
     };
@@ -34,6 +24,7 @@ const AddingRecipePanel = () => {
         const formElements = e.target.elements;
 
         const newRecipe = {
+            id: recipe?.id || null,
             title: formElements.title.value,
             category: formElements.category.value || null,
             people: parseInt(formElements.people?.value) || null,
@@ -50,14 +41,19 @@ const AddingRecipePanel = () => {
             return;
         }
 
-        await dispatch(addNewRecipe({
+        const apiFunction = recipe ? updateRecipe : addNewRecipe;
+        console.log(recipe)
+        await dispatch(apiFunction({
             recipe: newRecipe
         }));
+        dispatch(setEditIdRecipe(null));
+        dispatch(setAddNewRecipeOn(false));
         dispatch(getRecipes());
     }
 
     const cancelClick = () => {
         dispatch(setAddNewRecipeOn(false));
+        dispatch(setEditIdRecipe(null));
     }
 
     return (
@@ -70,23 +66,37 @@ const AddingRecipePanel = () => {
 
             <div className={`${s.inputBlock} ${s.inputBlock_title}`}>
                 <p>Название</p>
-                <input placeholder="Название" name="title" required={true}/>
+                <input placeholder="Название"
+                       name="title"
+                       required={true}
+                       defaultValue={recipe?.title || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Категория</p>
-                <input placeholder="Категория" name="category" required={true}/>
+                <input placeholder="Категория"
+                       name="category"
+                       required={true}
+                       defaultValue={recipe?.category || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Количество порций</p>
-                <input placeholder="Количество порций" name="people" required={true}/>
+                <input placeholder="Количество порций"
+                       name="people"
+                       required={true}
+                       defaultValue={recipe?.people || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Время</p>
-                <input placeholder="Время в минутах" name="time" required={true}/>
+                <input placeholder="Время в минутах"
+                       name="time"
+                       required={true}
+                       defaultValue={recipe?.time || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Описание</p>
-                <textarea placeholder="Описание" name="description"/>
+                <textarea placeholder="Описание"
+                          name="description"
+                          defaultValue={recipe?.description || ''}/>
             </div>
 
             <span className={s.separator}></span>
@@ -103,7 +113,7 @@ const AddingRecipePanel = () => {
                                     <input name={"ingredients" + index}
                                            placeholder="Ингредиент"
                                            key={index}
-                                           value={ingredient}
+                                           value={ingredient || ''}
                                            onChange={e => {
                                                const value = e.target.value;
 
@@ -127,7 +137,9 @@ const AddingRecipePanel = () => {
 
             <div className={`${s.inputBlock} ${s.stepsBlock}`}>
                 <p>Инструкция</p>
-                <textarea placeholder="Инструкция" name="instructions"/>
+                <textarea placeholder="Инструкция"
+                          name="instructions"
+                          defaultValue={recipe?.instructions || ''}/>
             </div>
         </form>
     );
