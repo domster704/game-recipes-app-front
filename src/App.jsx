@@ -15,7 +15,7 @@ const initializeAssistant = (getState /*: any*/, getRecoveryState) => {
             initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
             getState,
             nativePanel: {
-                defaultText: 'Добавить рецепт',
+                defaultText: '',
                 screenshotMode: false,
                 tabIndex: -1,
             },
@@ -35,7 +35,6 @@ class App extends React.Component {
         }
 
         this.assistant = initializeAssistant(() => this.getStateForAssistant());
-        console.log(this.assistant)
 
         this.assistant.on("data", (event/*: any*/) => {
             if (event.type === "character") {
@@ -44,6 +43,7 @@ class App extends React.Component {
 
             } else {
                 const {action} = event;
+                console.log(action)
                 this.dispatchAssistantAction(action);
             }
         });
@@ -82,8 +82,8 @@ class App extends React.Component {
         }
 
         switch (action.type) {
-            case 'add_note':
-                return this.new_card(action);
+            case 'add_recipe':
+                return this.new_recipe(action);
             case 'done_note':
                 return this.done_note(action);
             default:
@@ -91,7 +91,7 @@ class App extends React.Component {
         }
     }
 
-    new_card(action) {
+    new_recipe(action) {
         this.props.addRecipe({
             id: Math.random().toString(36).substring(7),
             title: action.recipeTitle,
@@ -149,7 +149,7 @@ class App extends React.Component {
                 {/*<main className={s.container}>*/}
                 {/*    <SearchRecipeBar*/}
                 {/*        onAdd={(recipeTitle) => {*/}
-                {/*            this.new_card({type: "add_note", recipeTitle});*/}
+                {/*            this.new_recipe({type: "add_note", recipeTitle});*/}
                 {/*        }}*/}
                 {/*    />*/}
                 {/*    <RecipeList*/}

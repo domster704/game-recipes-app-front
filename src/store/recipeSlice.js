@@ -104,7 +104,6 @@ const recipeSlice = createSlice({
             .addCase(updateRecipe.fulfilled, (state, action) => {
             })
             .addCase(getRecipes.fulfilled, (state, action) => {
-                console.log(action.payload)
                 if (!isIterable(action.payload)) {
                     return;
                 }

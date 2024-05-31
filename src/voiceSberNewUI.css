@@ -1,14 +1,20 @@
 div .NativePanel {
     position: fixed;
-    display: block;
-    background: unset;
-    padding: 48px 24px 24px 24px;
     bottom: 0;
     top: unset;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: start;
+    gap: 1em;
+
     width: 100%;
     height: unset;
+    padding: 48px 24px 24px 24px;
+
+    background: unset;
     backdrop-filter: unset;
-    z-index: 1;
 }
 
 div .Bubble {
@@ -21,18 +27,33 @@ div .NativePanel__textInputs {
 }
 
 div .NativePanel__textInputs :is(.TextInput, .SuggestsSuggest) {
-    font-size: 1.1em;
     color: black;
-    width: 100%;
 }
 
-div .NativePanel__textInputs .Suggests {
+div .NativePanel .NativePanel__textInputs .Suggests {
     top: unset !important;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+
+    position: relative !important;
+    left: unset !important;
+    right: unset !important;
+    transform: unset !important;
 }
 
 div .NativePanel__textInputs .SuggestsSuggest {
-    padding-left: 0;
+    width: fit-content;
     margin-top: 4px;
+
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background: rgba(0, 0, 0, .15);
+}
+
+div .NativePanel__textInputs .SuggestsSuggest:hover {
+    color: white;
+    background: #27b53c;
 }
 
 div .NativePanel__textInputs .Suggests * {

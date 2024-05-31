@@ -13,7 +13,6 @@ const FilterPanel = () => {
         for (let key in recipesStore.recipes) {
             allCategoriesLocal.push(recipesStore.recipes[key].category);
         }
-        console.log(recipesStore.recipes);
         return Array.from(new Set(allCategoriesLocal));
     };
 

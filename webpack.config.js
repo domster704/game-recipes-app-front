@@ -11,7 +11,7 @@ module.exports = {
     entry: './src/index.jsx',
     mode: 'development',
     output: {
-        path: __dirname + '/build',
+        path: path.resolve(__dirname, "build"),
         filename: 'main.bundle.js'
     },
     module: {
