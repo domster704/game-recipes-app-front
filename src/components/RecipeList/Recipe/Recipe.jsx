@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './Recipe.module.css'
 import {useDispatch} from "react-redux";
-import {setAddNewRecipeOn, setEditIdRecipe} from "../../../../store/recipeSlice";
+import {setAddNewRecipeOn, setEditIdRecipe} from "../../../store/recipeSlice";
 
 const Recipe = ({recipe}) => {
     const dispatch = useDispatch();

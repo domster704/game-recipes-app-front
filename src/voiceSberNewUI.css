@@ -9,9 +9,9 @@ div .NativePanel {
     align-items: start;
     gap: 1em;
 
-    width: 100%;
+    width: 60%;
     height: unset;
-    padding: 48px 24px 24px 24px;
+    padding: 0 0 24px 24px;
 
     background: unset;
     backdrop-filter: unset;
@@ -48,7 +48,7 @@ div .NativePanel__textInputs .SuggestsSuggest {
 
     padding: 0.5em;
     border-radius: 0.5em;
-    background: rgba(0, 0, 0, .15);
+    background: rgba(0, 0, 0, .5);
 }
 
 div .NativePanel__textInputs .SuggestsSuggest:hover {
@@ -57,6 +57,6 @@ div .NativePanel__textInputs .SuggestsSuggest:hover {
 }
 
 div .NativePanel__textInputs .Suggests * {
-    color: black;
+    color: white;
 }
 

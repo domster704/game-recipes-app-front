@@ -12,6 +12,7 @@ module.exports = {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, "build"),
+        // path: __dirname,
         filename: 'main.bundle.js'
     },
     module: {
@@ -59,14 +60,13 @@ module.exports = {
     devServer: {
         static: {
             directory: __dirname + '/build',
+            // directory: __dirname,
         },
         compress: true,
-        port: 10000,
+        port: 9005,
         client: {
             progress: false,
         },
-        open: false,
-        liveReload: false,
         host: 'localhost',
     }
 }

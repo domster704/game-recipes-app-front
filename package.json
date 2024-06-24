@@ -22,12 +22,8 @@
     "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "webpack-dev-server": "webpack-dev-server",
-    "webpack-build": "webpack --mode production",
-    "start-react": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "webpack-dev-server",
+    "build": "webpack --mode=production"
   },
   "eslintConfig": {
     "extends": [

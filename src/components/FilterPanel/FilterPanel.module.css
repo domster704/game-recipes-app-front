@@ -9,14 +9,34 @@
 }
 
 .panel h2 {
+    width: fit-content;
+
     font-weight: 600;
     font-size: 2em;
     cursor: pointer;
+    padding: 0.2em 0.35em;
+    border: 1px solid transparent;
+    border-radius: 1em;
+
+    margin-bottom: 0.25em;
+}
+
+.panel h2.selected {
+    border: 1px solid #27b53c;
+}
+
+.panel h2:active {
+    background: #27b53c;
+    color: white;
 }
 
 .sub_categories {
     --margin-left: 1.5em;
     margin-left: var(--margin-left);
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 }
 
 .sub_categories p {
@@ -25,8 +45,18 @@
     cursor: pointer;
     min-width: 10em;
 
-    padding: 0.375em 0;
+    padding: 0.375em 0.1em;
     background: transparent;
+    border-radius: 0.5em 0.5em 0 0;
+}
+
+.sub_categories p.selected {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(39, 181, 60, 0.2) 100%);
+}
+
+.sub_categories p:active {
+    background: #27b53c;
+    color: white;
 }
 
 .sub_categories p::after {

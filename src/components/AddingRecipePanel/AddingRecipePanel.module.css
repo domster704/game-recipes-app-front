@@ -103,6 +103,10 @@
     align-items: center;
 }
 
+.stepsBlock {
+    margin-bottom: 3em;
+}
+
 .stepsBlock textarea {
     min-height: 18.75em;
 }

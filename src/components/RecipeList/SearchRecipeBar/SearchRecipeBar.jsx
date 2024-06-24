@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./SearchRecipeBar.module.css";
 import {useDispatch} from "react-redux";
-import {setNameFilter} from "../../../../store/filterSlice";
+import {setNameFilter} from "../../../store/filterSlice";
 import {useSelector} from "react-redux";
 import searchIcon from "./img/searchIcon.svg";
 

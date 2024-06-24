@@ -1,8 +1,8 @@
 import React from 'react'
 import s from './AddingRecipePanel.module.css'
 import {useDispatch} from "react-redux";
-import {setAddNewRecipeOn, setEditIdRecipe} from "../../../store/recipeSlice";
-import {addNewRecipe, getRecipes, updateRecipe} from "../../../store/recipeThunk";
+import {setAddNewRecipeOn, setEditIdRecipe} from "../../store/recipeSlice";
+import {addNewRecipe, getRecipes, updateRecipe} from "../../store/recipeThunk";
 
 const AddingRecipePanel = ({recipe}) => {
     const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const AddingRecipePanel = ({recipe}) => {
             return;
         }
 
-        const apiFunction = recipe ? updateRecipe : addNewRecipe;
+        const apiFunction = recipe.category ? updateRecipe : addNewRecipe;
         console.log(recipe)
         await dispatch(apiFunction({
             recipe: newRecipe
@@ -69,6 +69,7 @@ const AddingRecipePanel = ({recipe}) => {
                 <input placeholder="Название"
                        name="title"
                        required={true}
+                       type="text"
                        defaultValue={recipe?.title || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
@@ -76,6 +77,7 @@ const AddingRecipePanel = ({recipe}) => {
                 <input placeholder="Категория"
                        name="category"
                        required={true}
+                       type="text"
                        defaultValue={recipe?.category || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
@@ -83,6 +85,7 @@ const AddingRecipePanel = ({recipe}) => {
                 <input placeholder="Количество порций"
                        name="people"
                        required={true}
+                       type="number"
                        defaultValue={recipe?.people || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
@@ -90,6 +93,7 @@ const AddingRecipePanel = ({recipe}) => {
                 <input placeholder="Время в минутах"
                        name="time"
                        required={true}
+                       type="number"
                        defaultValue={recipe?.time || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
