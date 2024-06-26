@@ -21,6 +21,11 @@
     width: 2em;
 }
 
+.search_bar button:hover img,
+.search_bar button:active img {
+    filter: invert(43%) sepia(40%) saturate(5736%) hue-rotate(158deg) brightness(99%) contrast(85%);
+}
+
 .search_bar {
     width: 100%;
     box-shadow: 0.125em 0.375em 5px 0 rgba(0, 0, 0, 0.12);

@@ -56,6 +56,10 @@ const AddingRecipePanel = ({recipe}) => {
         dispatch(setEditIdRecipe(null));
     }
 
+    const inputChangeNumber = (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '')
+    }
+
     return (
         <form className={s.container} onSubmit={addRecipeSubmit}>
             <div className={s.top_buttons}>
@@ -85,16 +89,16 @@ const AddingRecipePanel = ({recipe}) => {
                 <input placeholder="Количество порций"
                        name="people"
                        required={true}
-                       type="number"
-                       defaultValue={recipe?.people || ''}/>
+                       defaultValue={recipe?.people || ''}
+                       onChange={inputChangeNumber}/>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Время</p>
                 <input placeholder="Время в минутах"
                        name="time"
                        required={true}
-                       type="number"
-                       defaultValue={recipe?.time || ''}/>
+                       defaultValue={recipe?.time || ''}
+                       onChange={inputChangeNumber}/>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Описание</p>

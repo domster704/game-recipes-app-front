@@ -71,7 +71,8 @@
     margin-top: 6px;
 }
 
-.addCategoryButton:hover {
+.addCategoryButton:hover,
+.addCategoryButton:active {
     background: #404040;
     color: #d9d9d9;
 }
@@ -92,7 +93,8 @@
     border-radius: 50%;
 }
 
-.removeCategoryButton:hover {
+.removeCategoryButton:hover,
+.removeCategoryButton:active {
     background: #404040;
     color: #d9d9d9;
 }
@@ -124,7 +126,8 @@
     border: 1px solid #27b53c;
 }
 
-.top_buttons .saveButton:hover {
+.top_buttons .saveButton:hover,
+.top_buttons .saveButton:active {
     background: white;
     color: #27b53c;
     border: 1px solid #27b53c;
@@ -135,7 +138,8 @@
     border: 1px solid #404040;
 }
 
-.top_buttons .cancelButton:hover {
+.top_buttons .cancelButton:hover,
+.top_buttons .cancelButton:active {
     background: #404040;
     color: white;
 }

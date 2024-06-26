@@ -11,11 +11,13 @@
     border-radius: 0.75em;
 }
 
-.recipe:hover {
+.recipe:hover,
+.recipe:active {
     background: #27b53c;
 }
 
-.recipe:hover * {
+.recipe:hover *,
+.recipe:active * {
     color: #F1F1F1;
 }
 
