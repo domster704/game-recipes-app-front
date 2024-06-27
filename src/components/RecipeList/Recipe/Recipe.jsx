@@ -13,7 +13,7 @@ const Recipe = ({recipe}) => {
 
     return (
         <div className={s.recipeBlock}>
-            <div className={s.recipe} onClick={openRecipe}>
+            <div tabIndex="0" className={s.recipe} onClick={openRecipe}>
                 <div className={s.top}>
                     <p className={s.title}>{recipe.title}</p>
                     <span className={s.separator}></span>

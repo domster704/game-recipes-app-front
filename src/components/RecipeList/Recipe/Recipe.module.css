@@ -9,15 +9,20 @@
     cursor: pointer;
     padding: 0.5em;
     border-radius: 0.75em;
+    width: 100%;
+    /*text-align: left;*/
+    /*background: transparent;*/
 }
 
 .recipe:hover,
-.recipe:active {
+.recipe:active,
+.recipe:focus {
     background: #27b53c;
 }
 
 .recipe:hover *,
-.recipe:active * {
+.recipe:active *,
+.recipe:focus * {
     color: #F1F1F1;
 }
 

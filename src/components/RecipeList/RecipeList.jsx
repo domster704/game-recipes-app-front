@@ -27,7 +27,7 @@ const RecipeList = () => {
     }
 
     React.useEffect(() => {
-        setItems(doFilteringItems(Object.keys(recipeStore.recipes).map(key => recipeStore.recipes[key])));
+        setItems(doFilteringItems(Object.keys(recipeStore.recipes).map(key => recipeStore.recipes[key])).reverse());
     }, [recipeStore.recipes, filterStore.filter.category, filterStore.filter.name]);
 
     const setAddNewRecipe = () => {

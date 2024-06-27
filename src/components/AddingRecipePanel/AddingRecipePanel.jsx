@@ -5,11 +5,13 @@ import {setAddNewRecipeOn, setEditIdRecipe} from "../../store/recipeSlice";
 import {addNewRecipe, getRecipes, updateRecipe} from "../../store/recipeThunk";
 
 const AddingRecipePanel = ({recipe}) => {
+    const titleInputRef = React.useRef(null);
+
     const dispatch = useDispatch();
-    const [ingredients, setIngredients] = React.useState([]);
+    const [ingredients, setIngredients] = React.useState(['']);
 
     React.useEffect(() => {
-        setIngredients(recipe?.ingredients || []);
+        setIngredients(recipe?.ingredients || ['']);
     }, [recipe?.id]);
     const addCategory = () => {
         setIngredients([...ingredients, ''])
@@ -25,7 +27,7 @@ const AddingRecipePanel = ({recipe}) => {
 
         const newRecipe = {
             id: recipe?.id || null,
-            title: formElements.title.value,
+            title: titleInputRef.current?.innerHTML || null,
             category: formElements.category.value || null,
             people: parseInt(formElements.people?.value) || null,
             time: parseInt(formElements.time?.value) || null,
@@ -41,7 +43,7 @@ const AddingRecipePanel = ({recipe}) => {
             return;
         }
 
-        const apiFunction = recipe.category ? updateRecipe : addNewRecipe;
+        const apiFunction = recipe?.category ? updateRecipe : addNewRecipe;
         console.log(recipe)
         await dispatch(apiFunction({
             recipe: newRecipe
@@ -70,11 +72,14 @@ const AddingRecipePanel = ({recipe}) => {
 
             <div className={`${s.inputBlock} ${s.inputBlock_title}`}>
                 <p>Название</p>
-                <input placeholder="Название"
-                       name="title"
-                       required={true}
-                       type="text"
-                       defaultValue={recipe?.title || ''}/>
+                <div ref={titleInputRef}
+                     contentEditable={true}
+                    // placeholder="Название"
+                    //  name="title"
+                    //  required={true}
+                    //  contentEditable={"true"}
+                    // type="text"
+                     defaultValue={recipe?.title || ''}>{recipe?.title || 'Название'}</div>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Категория</p>
@@ -118,17 +123,28 @@ const AddingRecipePanel = ({recipe}) => {
                                 <div className={s.ingredientElement}
                                      key={index}>
                                     <b>{index + 1}</b>
-                                    <input name={"ingredients" + index}
-                                           placeholder="Ингредиент"
-                                           key={index}
-                                           value={ingredient || ''}
-                                           onChange={e => {
-                                               const value = e.target.value;
+                                    {/*<textarea name={"ingredients" + index}*/}
+                                    {/*          placeholder="Ингредиент"*/}
+                                    {/*          key={index}*/}
+                                    {/*          value={ingredient || ''}*/}
+                                    {/*          onChange={e => {*/}
+                                    {/*              const value = e.target.value;*/}
 
-                                               setIngredients(ingredients.map((ingredient, i) => i === index ? value : ingredient));
-                                           }}/>
+                                    {/*              setIngredients(ingredients.map((ingredient, i) => i === index ? value : ingredient));*/}
+                                    {/*          }}/>*/}
+                                    <div contentEditable={true}
+                                         name={"ingredients" + index}
+                                         placeholder="Ингредиент"
+                                         key={index}
+                                        // value={ingredient || ''}
+                                         onChange={e => {
+                                             const value = e.target.value;
+
+                                             setIngredients(ingredients.map((ingredient, i) => i === index ? value : ingredient));
+                                         }}>{ingredient || "Ингредиент"}</div>
                                     <button className={s.removeCategoryButton}
-                                            onClick={() => removeCategory(index)}>✖
+                                            onClick={() => removeCategory(index)}
+                                            type="button">✖
                                     </button>
                                 </div>
                             );

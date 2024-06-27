@@ -1,11 +1,14 @@
 .panel {
     position: sticky;
+    top: 0;
+    left: 0;
+
     min-height: 100vh;
+    height: max-content;
+
     padding: 6.25em 2.625em 10em 2.625em;
     background: #ededed;
     max-width: 100%;
-
-    top: 0;
 }
 
 .panel h2 {
@@ -25,7 +28,9 @@
     border: 1px solid #27b53c;
 }
 
-.panel h2:active {
+.panel h2:active,
+.panel h2:hover,
+.panel h2:focus{
     background: #27b53c;
     color: white;
 }
@@ -54,7 +59,9 @@
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(39, 181, 60, 0.2) 100%);
 }
 
-.sub_categories p:active {
+.sub_categories p:active,
+.sub_categories p:focus,
+.sub_categories p:hover {
     background: #27b53c;
     color: white;
 }

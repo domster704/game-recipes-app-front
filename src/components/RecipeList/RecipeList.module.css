@@ -1,6 +1,7 @@
 .recipeListBlock {
     margin-top: 2em;
     margin-right: 2em;
+    margin-bottom: 6em;
 }
 
 .recipeListBlock header {
@@ -28,7 +29,8 @@
 }
 
 .header_right button:hover svg,
-.header_right button:active svg {
+.header_right button:active svg,
+.header_right button:focus svg {
     filter: invert(50%) sepia(90%) saturate(507%) hue-rotate(78deg) brightness(95%) contrast(83%);
 }
 
