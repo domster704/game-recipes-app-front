@@ -3,7 +3,7 @@ import s from "./RecipeList.module.css";
 import {SearchRecipeBar} from "./SearchRecipeBar/SearchRecipeBar";
 import {useDispatch, useSelector} from "react-redux";
 import Recipe from "./Recipe/Recipe";
-import {setAddNewRecipeOn} from "../../store/recipeSlice";
+import {setAddNewRecipeOn, setEditIdRecipe} from "../../store/recipeSlice";
 import {getRecipes} from "../../store/recipeThunk";
 
 const RecipeList = () => {
@@ -31,6 +31,7 @@ const RecipeList = () => {
     }, [recipeStore.recipes, filterStore.filter.category, filterStore.filter.name]);
 
     const setAddNewRecipe = () => {
+        dispatch(setEditIdRecipe(null));
         dispatch(setAddNewRecipeOn(!recipeStore.isAddNewRecipeOn));
     }
 

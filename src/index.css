@@ -29,6 +29,21 @@ button {
     --font-family: "Inter", sans-serif;
 }
 
+div[contentEditable=true] {
+    cursor: text;
+}
+
+div[contentEditable=true]:empty:before {
+    content: attr(data-placeholder);
+    color: gray
+}
+
+@media screen and (max-width: 160em) {
+    html {
+        font-size: max(1em);
+    }
+}
+
 /*input[type="number"]::-webkit-outer-spin-button,*/
 /*input[type="number"]::-webkit-inner-spin-button {*/
 /*    -webkit-appearance: none;*/

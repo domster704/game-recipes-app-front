@@ -48,7 +48,7 @@ div .NativePanel__textInputs .SuggestsSuggest {
 
     padding: 0.5em;
     border-radius: 0.5em;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 1);
 }
 
 div .NativePanel__textInputs .SuggestsSuggest:hover {

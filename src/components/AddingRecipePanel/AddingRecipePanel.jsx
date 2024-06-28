@@ -11,7 +11,11 @@ const AddingRecipePanel = ({recipe}) => {
     const [ingredients, setIngredients] = React.useState(['']);
 
     React.useEffect(() => {
-        setIngredients(recipe?.ingredients || ['']);
+        if (recipe?.ingredients?.length !== 0) {
+            setIngredients(recipe?.ingredients || ['']);
+        } else {
+            setIngredients([''])
+        }
     }, [recipe?.id]);
     const addCategory = () => {
         setIngredients([...ingredients, ''])
@@ -48,8 +52,8 @@ const AddingRecipePanel = ({recipe}) => {
         await dispatch(apiFunction({
             recipe: newRecipe
         }));
-        dispatch(setEditIdRecipe(null));
-        dispatch(setAddNewRecipeOn(false));
+        // dispatch(setEditIdRecipe(null));
+        // dispatch(setAddNewRecipeOn(false));
         dispatch(getRecipes());
     }
 
@@ -73,13 +77,19 @@ const AddingRecipePanel = ({recipe}) => {
             <div className={`${s.inputBlock} ${s.inputBlock_title}`}>
                 <p>Название</p>
                 <div ref={titleInputRef}
+                     autoFocus={true}
+                     tabIndex={0}
                      contentEditable={true}
-                    // placeholder="Название"
+                     suppressContentEditableWarning={true}
+                     data-placeholder="Название"
+                     onBlur={e => {
+                         titleInputRef.current.innerHTML = e.target.textContent;
+                     }}
                     //  name="title"
                     //  required={true}
                     //  contentEditable={"true"}
                     // type="text"
-                     defaultValue={recipe?.title || ''}>{recipe?.title || 'Название'}</div>
+                     defaultValue={recipe?.title || ''}>{recipe?.title || ''}</div>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Категория</p>
@@ -133,15 +143,18 @@ const AddingRecipePanel = ({recipe}) => {
                                     {/*              setIngredients(ingredients.map((ingredient, i) => i === index ? value : ingredient));*/}
                                     {/*          }}/>*/}
                                     <div contentEditable={true}
+                                         suppressContentEditableWarning={true}
                                          name={"ingredients" + index}
-                                         placeholder="Ингредиент"
+                                         data-placeholder="Ингредиент"
                                          key={index}
+                                         autoFocus={true}
+                                         tabIndex={0}
                                         // value={ingredient || ''}
-                                         onChange={e => {
-                                             const value = e.target.value;
+                                         onBlur={e => {
+                                             const value = e.target.textContent
 
                                              setIngredients(ingredients.map((ingredient, i) => i === index ? value : ingredient));
-                                         }}>{ingredient || "Ингредиент"}</div>
+                                         }}>{ingredient || ""}</div>
                                     <button className={s.removeCategoryButton}
                                             onClick={() => removeCategory(index)}
                                             type="button">✖
