@@ -17,6 +17,9 @@
 - HTML, CSS
 - Sber Assistant
 
+## Макет
+https://www.figma.com/design/r5PM6JMvwkcKb9uSr7irlC/GameRecipe-(Copy)?node-id=0-1&t=IC3Lsh6oipZOoL2P-0
+
 # Фото веб-приложения
 ![Screenshot_1](https://github.com/domster704/game-recipes-app-front/assets/61056244/b5fe16c0-0412-42ae-9468-db1ab4d19807)
 ![Screenshot_2](https://github.com/domster704/game-recipes-app-front/assets/61056244/557f60f6-9706-45bd-924e-5ef852676513)
