@@ -22,9 +22,9 @@
 .app {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    column-gap: 30px;
+    column-gap: 2em;
 }
 
 .app.three_column {
-    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-columns: 1fr 5fr 3fr;
 }

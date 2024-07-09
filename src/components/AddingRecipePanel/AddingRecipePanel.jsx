@@ -4,8 +4,14 @@ import {useDispatch} from "react-redux";
 import {setAddNewRecipeOn, setEditIdRecipe} from "../../store/recipeSlice";
 import {addNewRecipe, getRecipes, updateRecipe} from "../../store/recipeThunk";
 
+function autoSize(elem) {
+    elem.style.height = 'auto';
+    elem.style.height = `${elem.scrollHeight}px`;
+}
+
 const AddingRecipePanel = ({recipe}) => {
     const titleInputRef = React.useRef(null);
+    const instructionTextareaRef = React.useRef(null);
 
     const dispatch = useDispatch();
     const [ingredients, setIngredients] = React.useState(['']);
@@ -17,6 +23,15 @@ const AddingRecipePanel = ({recipe}) => {
             setIngredients([''])
         }
     }, [recipe?.id]);
+
+    React.useEffect(() => {
+        /**
+         * Нужно для выполнения метода onFocus у textarea для вызова функции {@link autoSize}
+         */
+        instructionTextareaRef.current?.focus();
+        instructionTextareaRef.current?.blur();
+    }, [recipe?.id]);
+
     const addCategory = () => {
         setIngredients([...ingredients, ''])
     };
@@ -47,13 +62,16 @@ const AddingRecipePanel = ({recipe}) => {
             return;
         }
 
-        const apiFunction = recipe?.category ? updateRecipe : addNewRecipe;
-        console.log(recipe)
-        await dispatch(apiFunction({
-            recipe: newRecipe
-        }));
-        // dispatch(setEditIdRecipe(null));
-        // dispatch(setAddNewRecipeOn(false));
+        if (recipe?.category) {
+            await dispatch(updateRecipe({
+                recipe: newRecipe
+            }));
+        } else {
+            await dispatch(addNewRecipe({
+                recipe: newRecipe
+            }));
+        }
+
         dispatch(getRecipes());
     }
 
@@ -85,23 +103,20 @@ const AddingRecipePanel = ({recipe}) => {
                      onBlur={e => {
                          titleInputRef.current.innerHTML = e.target.textContent;
                      }}
-                    //  name="title"
-                    //  required={true}
-                    //  contentEditable={"true"}
-                    // type="text"
                      defaultValue={recipe?.title || ''}>{recipe?.title || ''}</div>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Категория</p>
                 <input placeholder="Категория"
+                       autoFocus={true}
                        name="category"
                        required={true}
-                       type="text"
                        defaultValue={recipe?.category || ''}/>
             </div>
             <div className={`${s.inputBlock}`}>
                 <p>Количество порций</p>
                 <input placeholder="Количество порций"
+                       autoFocus={true}
                        name="people"
                        required={true}
                        defaultValue={recipe?.people || ''}
@@ -110,6 +125,7 @@ const AddingRecipePanel = ({recipe}) => {
             <div className={`${s.inputBlock}`}>
                 <p>Время</p>
                 <input placeholder="Время в минутах"
+                       autoFocus={true}
                        name="time"
                        required={true}
                        defaultValue={recipe?.time || ''}
@@ -118,6 +134,7 @@ const AddingRecipePanel = ({recipe}) => {
             <div className={`${s.inputBlock}`}>
                 <p>Описание</p>
                 <textarea placeholder="Описание"
+                          autoFocus={true}
                           name="description"
                           defaultValue={recipe?.description || ''}/>
             </div>
@@ -133,28 +150,19 @@ const AddingRecipePanel = ({recipe}) => {
                                 <div className={s.ingredientElement}
                                      key={index}>
                                     <b>{index + 1}</b>
-                                    {/*<textarea name={"ingredients" + index}*/}
-                                    {/*          placeholder="Ингредиент"*/}
-                                    {/*          key={index}*/}
-                                    {/*          value={ingredient || ''}*/}
-                                    {/*          onChange={e => {*/}
-                                    {/*              const value = e.target.value;*/}
 
-                                    {/*              setIngredients(ingredients.map((ingredient, i) => i === index ? value : ingredient));*/}
-                                    {/*          }}/>*/}
                                     <div contentEditable={true}
                                          suppressContentEditableWarning={true}
-                                         name={"ingredients" + index}
                                          data-placeholder="Ингредиент"
                                          key={index}
                                          autoFocus={true}
                                          tabIndex={0}
-                                        // value={ingredient || ''}
                                          onBlur={e => {
                                              const value = e.target.textContent
 
                                              setIngredients(ingredients.map((ingredient, i) => i === index ? value : ingredient));
                                          }}>{ingredient || ""}</div>
+
                                     <button className={s.removeCategoryButton}
                                             onClick={() => removeCategory(index)}
                                             type="button">✖
@@ -174,9 +182,17 @@ const AddingRecipePanel = ({recipe}) => {
 
             <div className={`${s.inputBlock} ${s.stepsBlock}`}>
                 <p>Инструкция</p>
-                <textarea placeholder="Инструкция"
+                <textarea ref={instructionTextareaRef}
+                          placeholder="Инструкция"
                           name="instructions"
-                          defaultValue={recipe?.instructions || ''}/>
+                          autoFocus={true}
+                          defaultValue={recipe?.instructions || ''}
+                          onInput={e => {
+                              autoSize(e.target);
+                          }}
+                          onFocus={e => {
+                              autoSize(e.target);
+                          }}/>
             </div>
         </form>
     );

@@ -22,7 +22,7 @@
     "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --host local-ip",
     "build": "webpack --mode=production"
   },
   "eslintConfig": {

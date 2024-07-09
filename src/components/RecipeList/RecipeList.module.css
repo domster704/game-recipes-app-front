@@ -1,14 +1,16 @@
 .recipeListBlock {
     margin-top: 2em;
-    margin-right: 2em;
     margin-bottom: 6em;
+    margin-right: 1em;
 }
 
 .recipeListBlock header {
-    display: flex;
+    display: grid;
     justify-content: space-between;
-    margin-bottom: 3.125em;
+    grid-template-columns: 1fr 3fr;
+    margin-bottom: 2em;
     gap: 1em;
+    align-items: center;
 }
 
 .recipeListBlock header h1 {
@@ -35,13 +37,12 @@
 }
 
 .recipeList {
-    margin-left: 1.125em;
     display: flex;
     flex-direction: column;
     gap: 1.5em;
 }
 
-@media screen and (max-width: 1601px) {
+@media screen and (max-width: 2601px) {
     .recipeListBlock header h1 {
         font-weight: 600;
         font-size: 1.625em;
@@ -53,7 +54,6 @@
     }
 
     .recipeList {
-        margin-left: 18px;
         display: flex;
         flex-direction: column;
         gap: 1.125em;

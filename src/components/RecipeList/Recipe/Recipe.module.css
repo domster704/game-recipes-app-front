@@ -89,7 +89,7 @@
     font-size: 1.25em;
 }
 
-@media screen and (max-width: 1601px) {
+@media screen and (max-width: 2601px) {
     .title {
         font-size: 1.5em;
     }
