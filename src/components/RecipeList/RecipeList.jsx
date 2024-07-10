@@ -42,7 +42,7 @@ const RecipeList = () => {
     return (
         <div className={s.recipeListBlock}>
             <header>
-                <h1>Все рецепты</h1>
+                <h1>{filterStore.filter.category === null ? "Все рецепты" : filterStore.filter.category}</h1>
                 <div className={s.header_right}>
                     <SearchRecipeBar/>
                     <button onClick={setAddNewRecipe}>
