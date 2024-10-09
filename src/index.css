@@ -49,3 +49,9 @@ div[contentEditable=true]:empty:before {
         font-size: max(1em);
     }
 }
+
+@media screen and (min-width: 2560px) {
+    html {
+        font-size: 0.75vw;
+    }
+}

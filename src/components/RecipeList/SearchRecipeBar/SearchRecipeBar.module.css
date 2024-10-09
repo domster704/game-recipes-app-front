@@ -46,10 +46,10 @@
 
 .search_input {
     width: 100%;
-    padding: 0 0.83em;
+    padding: 0.5em 1em;
 
     font-weight: 400;
-    font-size: 1.5em;
+    font-size: 1em;
     color: rgba(33, 33, 33, 0.7);
 
     position: relative;
